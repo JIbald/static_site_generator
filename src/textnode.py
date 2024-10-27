@@ -2,7 +2,7 @@ from enum import Enum
 
 
 class TextType(Enum):
-    NORMAL = "normal"
+    TEXT = "text"
     BOLD = "bold"
     ITALIC = "italic"
     CODE = "code"
@@ -24,4 +24,4 @@ class TextNode:
         )
 
     def __repr__(self):
-        return f"{self.text} node, {self.text_type}, {self.url}"
+        return f"TextNode({self.text} node, {self.text_type}, {self.url})"

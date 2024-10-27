@@ -21,7 +21,7 @@ class TestTextNode(unittest.TestCase):
 
     def test_diff_text_type(self):
         node = TextNode("smacking", TextType.ITALIC, "https://www.boot.dev")
-        node2 = TextNode("smacking", TextType.NORMAL, "https://www.boot.dev")
+        node2 = TextNode("smacking", TextType.TEXT, "https://www.boot.dev")
         self.assertNotEqual(node, node2)
 
 

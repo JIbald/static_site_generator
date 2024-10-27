@@ -20,7 +20,7 @@ class TestParentNode(unittest.TestCase):
             == "<p><b>bold text</b>basic text<i>italic text</i>basic text2</p>"
         )
 
-    def nestedParent(self):
+    def nested_parent(self):
         nested = ParentNode(
             "div",
             [

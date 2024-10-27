@@ -2,12 +2,12 @@ from htmlnode import HTMLNode
 
 
 class LeafNode(HTMLNode):
-    def __init__(self, tag=None, value=None, attributes=None):
+    def __init__(self, tag, value, props=None):
         if value is None:
             raise ValueError(
                 "LeafNode::__init__ object of type LeafNode must have a value attribute."
             )
-        super().__init__(tag, value, attributes, [])
+        super().__init__(tag, value, None, props)
 
     def to_html(self):
         if self.value is None:
@@ -15,11 +15,9 @@ class LeafNode(HTMLNode):
                 "LeafNode::to_html() object of type LeafNode must have a value attribute."
             )
         if self.tag is None:
-            return f"{self.value}"
+            return self.value
         else:
-            str_attr = ""
-            if self.attributes:
-                for key, value in self.attributes.items():
-                    str_attr = " ".join(f'{key}="{value}"')
+            return f"<{self.tag}{self.props_to_html()}>{self.value}</{self.tag}>"
 
-            return f"<{self.tag}{str_attr}>{self.value}</{self.tag}>"
+    def __repr__(self):
+        return f"LeafNode({self.tag}, {self.value}, {self.props})"

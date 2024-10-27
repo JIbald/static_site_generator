@@ -2,13 +2,8 @@ from htmlnode import HTMLNode
 
 
 class ParentNode(HTMLNode):
-    def __init__(self, children, tag=None, props=None):
-        self.children = children
-        self.tag = tag
-        if props is not None:
-            self.props = props
-        else:
-            self.props = {}
+    def __init__(self, tag, children, props=None):
+        super().__init__(tag, None, children, props)
 
     def to_html(self):
         if self.tag is None:
@@ -18,5 +13,8 @@ class ParentNode(HTMLNode):
         else:
             children_html = ""
             for child in self.children:
-                children_html.join(child.to_html())
-            return f"<{self.tag}>{children_html}</{self.tag}>"
+                children_html += child.to_html()
+            return f"<{self.tag}{self.props_to_html()}>{children_html}</{self.tag}>"
+
+    def __repr__(self):
+        return f"ParentNode({self.tag}, children: {self.children}, {self.props})"
